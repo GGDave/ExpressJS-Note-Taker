@@ -11,14 +11,14 @@ app.use(express.json());// this line of code allows us to handle json data
 app.use(express.urlencoded({ extended: true }));// this line of code allows us to handle urlencoded data
 app.use(express.static("public")); // this line of code allows us to automatically build a route for the contents inside the public folder.
 
-app.get("/index", (req, res) =>
+app.get("/", (req, res) =>
   res.sendFile(path.join(__dirname, "/public/index.html"))
 );
 app.get("/notes", (req, res) =>
   res.sendFile(path.join(__dirname, "/public/notes.html"))
 );
 
-//lines 22-27 allows us to retrieve thr db.json file
+//lines 22-27 allows us to retrieve  db.json file
 const util = require('util');
 const readFromFile = util.promisify(fs.readFile);
 
