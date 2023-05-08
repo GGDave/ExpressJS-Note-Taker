@@ -53,12 +53,13 @@ app.post('/api/notes', (req, res) => { // the following section of code will all
         text: req.body.text,// here the txt in the request body will be given the value of "text"
         id: uuid(),// this line will give the new note a unique id
       };
-      dbJson.push(newNote);
-      return writeFileAsync('./db/db.json', JSON.stringify(dbJson));
+      dbJson.push(newNote); // this line will then add the new note to the db.json file
+      return writeFileAsync('./db/db.json', JSON.stringify(dbJson)); // this line of code will then take the new db.json file with the new note included
+      //and write it to the db.json file in the directory. 
     })
-    .then(() => readFromFile('./db/db.json'))
-    .then((updatedData) => res.json(JSON.parse(updatedData)))
-    .catch((err) => console.error(err));
+    .then(() => readFromFile('./db/db.json'))// this line will then read the file after its been updated
+    .then((updatedData) => res.json(JSON.parse(updatedData))) //this line will allow the new note stored note to be seen by the user
+    .catch((err) => console.error(err));//this line will log any errors to the console. 
 });
 
 
